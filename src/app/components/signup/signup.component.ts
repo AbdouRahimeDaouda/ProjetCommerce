@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import ValidateForm from 'src/app/helpers/validateForm';
+import {AuthService} from "../../services/auth.service";
 
 
 @Component({
@@ -14,20 +15,20 @@ export class SignupComponent implements OnInit {
   isText: boolean = false;
   eyeIcon: string = "fa-eye-slash";
   signUpForm!: FormGroup;
-  constructor(private fb: FormBuilder) {
-   
-    
-    
+  constructor(private fb: FormBuilder, private auth: AuthService) {
+
+
+
   }
 
   ngOnInit(): void {
-    
+
     this.signUpForm = this.fb.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
+      prenomUser: ['', Validators.required],
+      nomUser: ['', Validators.required],
       email: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      motPasse: ['', Validators.required]
 
     })
   }
@@ -39,6 +40,15 @@ export class SignupComponent implements OnInit {
   onSignUp(){
     if(this.signUpForm.valid){
       console.log(this.signUpForm.value)
+      this.auth.signUp(this.signUpForm.value)
+        .subscribe({
+          next:(res) =>{
+            alert(res.message)
+          },
+          error:(err)=>{
+            alert(err?.error.message)
+          }
+        })
     } else{
       console.log("Form invlaid");
 
@@ -50,6 +60,6 @@ export class SignupComponent implements OnInit {
   }
 
 
- 
+
 
 }

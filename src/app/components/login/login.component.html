@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <div class="outer">
     <div class="container">
         <div class="row">
@@ -19,13 +20,13 @@
                             <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')" class="text-danger">*Username is required</small>
 
                             <div class="form-group pt-3">
-                                <div class="input-field" [class.error]="loginForm.controls['password'].dirty && loginForm.hasError('required','password')">
+                                <div class="input-field" [class.error]="loginForm.controls['motPasse'].dirty && loginForm.hasError('required','motPasse')">
                                     <span class="fa fa-lock p-2"></span>
-                                    <input [type]="type" formControlName="password" placeholder="Password">
+                                    <input [type]="type" formControlName="motPasse" placeholder="motPasse">
                                     <span (click)= "hideShowPass()" class="fa {{eyeIcon}}"></span>
                                 </div>
                             </div>
-                            <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger">*Password is required</small>
+                            <small *ngIf="loginForm.controls['motPasse'].dirty && loginForm.hasError('required','motPasse')" class="text-danger">*Password is required</small>
                             <div class="form-inline fr mt-4">
                                 <a id="forget" class="font-weight-bold">Forget Password</a>
                             </div>
